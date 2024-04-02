@@ -2,6 +2,7 @@ import os
 import glob
 import subprocess
 import argparse
+import shutil
 
 def compute_opts(topology_name):
     opts_dir_prefix = 'opts_'
