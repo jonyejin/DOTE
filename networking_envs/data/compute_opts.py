@@ -33,7 +33,7 @@ for d in ['test', 'train']:
         for j in range(opts_info[i][1]):
             input_file_name = str(input_file_idx) + '.opt'
             with(open(opts_dir_prefix + d + '/' + input_file_name)) as f:
-                lines = f.read().splitlines()
+                lines = f.read().split('!')
                 for line in lines:
                     if line.startswith(' Optimal result for actual demand: '):
                         opt_res = float(line[line.find(': ')+1:])
