@@ -10,8 +10,10 @@ def compute_opts(topology_name):
     test_opts_dir = opts_dir_prefix + 'test'
     train_opts_dir = opts_dir_prefix + 'train'
 
-    assert not os.path.exists(test_opts_dir)
-    assert not os.path.exists(train_opts_dir)
+    if os.path.exists(test_opts_dir):
+        shutil.rmtree(test_opts_dir)
+    if os.path.exists(train_opts_dir):
+        shutil.rmtree(train_opts_dir)
 
     os.mkdir(test_opts_dir)
     os.mkdir(train_opts_dir)
