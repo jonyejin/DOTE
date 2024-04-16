@@ -6,18 +6,34 @@ from tqdm import tqdm
 from data_gen import utils as DGU
 from ml.sl_algos import utils as SLU
 
+# def output_to_routing(res):
+#     if isinstance(res,list): res = '\n'.join(res)
+#
+#     print(res)
+#     tunnels = [l for l in res.split("\n") if "Tunnel(" in l]
+#     tunnel_to_frac = [""]*len(tunnels)
+#     for tid, t in enumerate(tunnels):
+#         if not t.strip(): continue
+# #         tid = int( t.split("(")[1].split(")")[0] )
+#         frac = t.split(":")[-1].strip()
+#         tunnel_to_frac[tid] = frac
+#     opt_res = res.split("\n")[0].split(":")[1].strip()
+#
+#     return ",".join(tunnel_to_frac), opt_res
+
 def output_to_routing(res):
-    if isinstance(res,list): res = '\n'.join(res)
-    tunnels = [l for l in res.split("\n") if "Tunnel(" in l]
-    tunnel_to_frac = [""]*len(tunnels)
-    for tid, t in enumerate(tunnels):
-        if not t.strip(): continue
-#         tid = int( t.split("(")[1].split(")")[0] )
-        frac = t.split(":")[-1].strip()
-        tunnel_to_frac[tid] = frac
-    opt_res = res.split("\n")[0].split(":")[1].strip()
-    
-    return ",".join(tunnel_to_frac), opt_res
+    if isinstance(res, list):
+        res = '\n'.join(res)  # 리스트 형태의 결과를 하나의 문자열로 변환
+
+    print(res)  # 전달받은 결과 출력
+
+    # "Optimal result for actual demand:"를 포함하는 줄 찾기
+    for line in res.split("\n"):
+        if "Optimal result for actual demand:" in line:
+            # 해당 줄에서 콜론(:) 뒤의 값을 추출하여 반환
+            opt_res = line.split(":")[1].strip()
+            print(opt_res)
+            return None, opt_res
 
 def main(args):
     # do this on a file by file basis
@@ -30,6 +46,8 @@ def main(args):
     fname = "%s/%s/%s"%( base_folder, train_test, hist_name)
     
     tms = SLU.get_data([fname], None)
+
+    print(tms)
     
     ############################
     # do regualr

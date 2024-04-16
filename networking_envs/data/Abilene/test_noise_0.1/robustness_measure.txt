@@ -1,0 +1,6 @@
+File Details:
+Initial Traffic Matrix File: /Users/yejin/TEBench/DOTE/networking_envs/data/Abilene/test/4.hist
+New Traffic Matrix File: /Users/yejin/TEBench/DOTE/networking_envs/data/Abilene/test_noise_0.1/4.hist
+MCF Rates File: /Users/yejin/TEBench/DOTE/networking_envs/data/Abilene/test_noise_0.1/4.opt
+
+Calculated Robustness Measure: -0.0011042773493574333

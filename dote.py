@@ -31,6 +31,9 @@ class DmDataset(Dataset):
         np_tms = np_tms.T
         np_tms_flat = np_tms.flatten('F')
 
+        print(len(tms))
+        print(len(opts))
+
         assert (len(tms) == len(opts))
         X_ = []
         for histid in range(len(tms) - props.hist_len):
@@ -259,15 +262,19 @@ elif props.so_mode == SOMode.TEST: #test
     # create a data loader for the test set
     test_dl = DataLoader(test_dataset, batch_size=1, shuffle=False)
     #load the model
-    model = torch.load('model_dote.pkl')
+    model = torch.load('model_Abilene_5epoch.pkl')
     model.eval()
     with torch.no_grad():
         with tqdm(test_dl) as tests:
             test_losses = []
             for (inputs, targets) in tests:
+                print(inputs.shape)
+                print(targets)
                 pred = model(inputs)
                 test_loss, test_loss_val = loss_fn(pred, targets, env)
+                print(pred)
                 test_losses.append(test_loss_val)
+                break
             avg_loss = sum(test_losses) / len(test_losses)
             print(f"Test Error: \n Avg loss: {avg_loss:>8f} \n")
             #print statistics to file
@@ -282,7 +289,7 @@ elif props.so_mode == SOMode.TEST: #test
                 f.write('90TH: ' + str(dists[int(len(dists) * 0.90)]) + '\n')
                 f.write('95TH: ' + str(dists[int(len(dists) * 0.95)]) + '\n')
                 f.write('99TH: ' + str(dists[int(len(dists) * 0.99)]) + '\n')
-            
+
             if concurrent_flow_cdf != None:
                 concurrent_flow_cdf.sort()
                 with open(props.graph_base_path + '/' + props.ecmp_topo + '/' + 'concurrent_flow_cdf.txt', 'w') as f:
