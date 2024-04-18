@@ -252,6 +252,12 @@ if props.so_mode == SOMode.TRAIN: #train
                 loss_count += 1
                 loss_avg = loss_sum / loss_count
                 tepoch.set_postfix(loss=loss_avg)
+        
+            # Condition to save the model every 10 epochs
+            if (epoch + 1) % 10 == 0:
+                model_save_path = f'model_dote_epoch_{epoch+1}.pkl'
+                torch.save(model.state_dict(), model_save_path)
+                print(f"Model saved at {model_save_path}")
 
     #save the model
     torch.save(model, 'model_dote.pkl')
@@ -262,19 +268,21 @@ elif props.so_mode == SOMode.TEST: #test
     # create a data loader for the test set
     test_dl = DataLoader(test_dataset, batch_size=1, shuffle=False)
     #load the model
-    model = torch.load('model_Abilene_5epoch.pkl')
+    model = NeuralNetwork(props.hist_len * env.get_num_nodes() * (env.get_num_nodes() - 1), env._optimizer._num_paths).double()
+    model.load_state_dict(torch.load('model_dote_epoch_10.pkl'))
     model.eval()
+
     with torch.no_grad():
         with tqdm(test_dl) as tests:
             test_losses = []
             for (inputs, targets) in tests:
-                print(inputs.shape)
-                print(targets)
+                # print(inputs.shape)
+                # print(targets)
                 pred = model(inputs)
                 test_loss, test_loss_val = loss_fn(pred, targets, env)
-                print(pred)
+                # print(pred)
                 test_losses.append(test_loss_val)
-                break
+                # break
             avg_loss = sum(test_losses) / len(test_losses)
             print(f"Test Error: \n Avg loss: {avg_loss:>8f} \n")
             #print statistics to file
