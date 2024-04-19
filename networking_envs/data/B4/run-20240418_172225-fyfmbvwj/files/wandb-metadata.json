@@ -1,0 +1,60 @@
+{
+    "os": "Windows-10-10.0.22631-SP0",
+    "python": "3.11.8",
+    "heartbeatAt": "2024-04-19T00:22:28.273457",
+    "startedAt": "2024-04-19T00:22:25.891063",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--ecmp_topo",
+        "B4",
+        "--so_mode",
+        "train",
+        "--so_epochs",
+        "100",
+        "--opt_function",
+        "MAXCONC",
+        "--paths_from",
+        "sp",
+        "--so_max_conc_batch_size",
+        "1"
+    ],
+    "state": "running",
+    "program": "C:\\Users\\franc\\Documents\\ideas\\TEBench\\.conda\\DOTE\\dote.py",
+    "codePathLocal": "..\\..\\..\\dote.py",
+    "codePath": "..\\..\\..\\dote.py",
+    "host": "Frances-XPS",
+    "username": "franc",
+    "executable": "c:\\Users\\franc\\Documents\\ideas\\TEBench\\.conda\\python.exe",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 2592.0,
+        "min": 0.0,
+        "max": 2592.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2592.0,
+            "min": 0.0,
+            "max": 2592.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 460.41991806030273,
+            "used": 446.77859115600586
+        }
+    },
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1650",
+            "memory_total": 4294967296
+        }
+    ],
+    "memory": {
+        "total": 15.733722686767578
+    }
+}
