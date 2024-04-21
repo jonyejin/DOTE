@@ -303,3 +303,23 @@ elif props.so_mode == SOMode.TEST: #test
                 with open(props.graph_base_path + '/' + props.ecmp_topo + '/' + 'concurrent_flow_cdf.txt', 'w') as f:
                     for v in concurrent_flow_cdf:
                         f.write(str(v / len(dists)) + '\n')
+
+
+#import matplotlib.pyplot as plt
+
+# Sample data (replace with your actual data)
+#time = [1, 2, 3, 4, 5]  # Time or temporal fluctuation
+#satisfied_demand = [10, 20, 15, 25, 30]  # Satisfied demand
+
+# Plot the graph
+#plt.plot(time, satisfied_demand, marker='o', linestyle='-')
+
+# Add labels and title
+#plt.xlabel('Time or Temporal Fluctuation')
+#plt.ylabel('Satisfied Demand')
+#plt.title('Satisfied Demand vs. Temporal Fluctuation')
+
+# Show the plot
+#plt.grid(True)
+#plt.show()
+
