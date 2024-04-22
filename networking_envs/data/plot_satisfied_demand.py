@@ -14,8 +14,9 @@ def extract_satisfied_demand(file_path):
 
 # Directories containing .opt files
 directories = [
-    '/Users/franc/Documents/ideas/TEBench/.conda/DOTE/networking_envs/data/Abilene/opts_test',
-    '/Users/franc/Documents/ideas/TEBench/.conda/DOTE/networking_envs/data/GEANT/opts_test',
+    '/DOTE/networking_envs/data/Abilene/opts_test',
+    '/DOTE/networking_envs/data/GEANT/opts_test',
+    #('/path/to/directory3', 'B4'),
     # Add more directories as needed
 ]
 
